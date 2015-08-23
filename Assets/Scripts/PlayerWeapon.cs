@@ -14,7 +14,7 @@ public class PlayerWeapon : MonoBehaviour {
         Vector2 delta = col.transform.position - transform.position;
 
         if (col.gameObject.tag == "Elf") {
-            col.GetComponent<Rigidbody2D>().velocity = delta.normalized * weapon.force / delta.magnitude;
+            col.GetComponent<Rigidbody2D>().velocity = delta.normalized * Mathf.Clamp(weapon.force / delta.magnitude, 20, 20);
             col.GetComponent<HitPoint>().GetDamage(weapon.damage);
         }
 

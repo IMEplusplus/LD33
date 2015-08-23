@@ -18,6 +18,7 @@ public class Elf : MonoBehaviour {
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
         GetComponent<Animator>().SetBool("Dead", true);
         GetComponent<BoxCollider2D>().enabled = false;

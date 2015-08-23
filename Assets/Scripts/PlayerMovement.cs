@@ -6,13 +6,6 @@ public class PlayerMovement : MonoBehaviour {
 
     public Weapon weapon;
 
-    public KeyCode keyRight = KeyCode.D;
-    public KeyCode keyLeft  = KeyCode.A;
-    public KeyCode keyUp    = KeyCode.W;
-    public KeyCode keyDown  = KeyCode.S;
-
-    public bool toRight = true;
-
     [Range(0,10)]
     public float speed = 1f;
 
