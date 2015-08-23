@@ -1,0 +1,7 @@
+TODO
+- Soundfx
+- Animations
+- Joystick/Axis
+- "Cut Scenes"
+- Gráficos (cenários)
+- IA (elves)
