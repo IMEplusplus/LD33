@@ -7,6 +7,7 @@ public class ButtonManager : MonoBehaviour {
     public GameObject bridgeColider;
     public GameObject elfPrefab;
     public Transform[] spawners;
+    public Sprite buttonOff;
     bool spawned;
 
     AudioSource audio;
@@ -25,7 +26,7 @@ public class ButtonManager : MonoBehaviour {
         if(!locked)
         {
             audio.Play();
-            bridge. SetActive(!bridge.activeSelf);
+            bridge.SetActive(!bridge.activeSelf);
             bridgeColider.SetActive(!bridgeColider.activeSelf);
 
             //Monster Spawn
@@ -37,6 +38,8 @@ public class ButtonManager : MonoBehaviour {
                 spawned = true;
             }
 
+            locked = true;
+            GetComponent<SpriteRenderer>().sprite = buttonOff;
         }
     }
 }
