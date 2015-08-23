@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Collider2D))]
 public class Weapon : MonoBehaviour {
     public delegate IEnumerator OnAttackDelegate();
     public OnAttackDelegate OnAttack;
