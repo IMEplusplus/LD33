@@ -8,6 +8,8 @@ public class HitPoint : MonoBehaviour {
     public delegate void OnDeathDelegate();
     public OnDeathDelegate OnDeath;
 
+    public GameObject gameManager;
+
     public void GetDamage(int damage) {
         hp -= damage;
         if (hp <= 0) {
