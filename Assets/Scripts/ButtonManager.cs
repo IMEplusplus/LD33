@@ -6,6 +6,7 @@ public class ButtonManager : MonoBehaviour {
     public GameObject bridge;
     public GameObject bridgeColider;
     public GameObject elfPrefab;
+    public Transform[] spawners;
     bool spawned;
 
     AudioSource audio;
@@ -30,9 +31,9 @@ public class ButtonManager : MonoBehaviour {
             //Monster Spawn
             if (!spawned)
             {
-                Instantiate(elfPrefab, transform.position + (Vector3.down) * 3, Quaternion.identity);
-                Instantiate(elfPrefab, transform.position + (Vector3.down) * 3 + (Vector3.left) * 2, Quaternion.identity);
-                Instantiate(elfPrefab, transform.position + (Vector3.down) * 3 + (Vector3.left) * 4, Quaternion.identity);
+                foreach(Transform trans in spawners) {
+                    Instantiate(elfPrefab, trans.position, Quaternion.identity);
+                }
                 spawned = true;
             }
 

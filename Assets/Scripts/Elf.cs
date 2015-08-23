@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Elf : MonoBehaviour {
     public GameObject healthPotion;
@@ -10,16 +9,17 @@ public class Elf : MonoBehaviour {
         GetComponent<HitPoint>().OnDeath = OnDeath;
     }
 
-    void OnDeath() {
-        StartCoroutine(OnDeathAnimation());
+    public void Die() {
+        GameObject newPotion =(GameObject) Instantiate(healthPotion, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
-    IEnumerator OnDeathAnimation() {
-        yield return new WaitForSeconds(0.4f);
+    void OnDeath() {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
 
-        if (Random.Range(0f, 1f) > potionDrop) {
-            GameObject newPotion =(GameObject) Instantiate(healthPotion, transform.position, Quaternion.identity);
-        }
-        Destroy(gameObject);
+        GetComponent<Animator>().SetBool("Dead", true);
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 }

@@ -6,7 +6,7 @@ public class ElfMovement : MonoBehaviour {
     HitPoint hitpoint;
     Animator anim;
 
-    public float range;
+    public float range = 10f;
     public float speed = 1f;
 
     bool walking = false;
@@ -18,21 +18,23 @@ public class ElfMovement : MonoBehaviour {
     }
 
 	void Update () {
-        walking = false;
         if (!weapon.isAttacking && hitpoint.alive) {
+            walking = false;
             Vector3 delta = player.transform.position - transform.position;
             if (delta.magnitude < range) {
                 transform.position += delta.normalized * speed * Time.deltaTime;
+
+                if (Mathf.Sign(transform.localScale.x) != Mathf.Sign(delta.x)) {
+                    Vector3 scale = transform.localScale;
+                    scale.x *= -1;
+                    transform.localScale = scale;
+                }
+
                 walking = true;
             }
 
-            if (Mathf.Sign(delta.x) != Mathf.Sign(transform.localScale.x)) {
-                Vector3 scale = transform.localScale;
-                scale.x *= -1;
-                transform.localScale = scale;
-            }
-        }
 
-        anim.SetBool("Walking", walking);
+            anim.SetBool("Walking", walking);
+        }
 	}
 }
