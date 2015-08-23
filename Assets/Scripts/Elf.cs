@@ -11,13 +11,12 @@ public class Elf : MonoBehaviour {
     }
 
     void OnDeath() {
-        GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(OnDeathAnimation());
     }
 
     IEnumerator OnDeathAnimation() {
         yield return new WaitForSeconds(0.4f);
-        GameObject.Find("ElfManager").GetComponent<ElfManagerController>().ManDown();
+
         if (Random.Range(0f, 1f) > potionDrop) {
             GameObject newPotion =(GameObject) Instantiate(healthPotion, transform.position, Quaternion.identity);
         }
