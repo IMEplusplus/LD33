@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour {
     }
     
 	void Update () {
-        if (Input.GetKey(keyAttack) && !weapon.isAttacking) {
+        if (Input.GetButton("Action") && !weapon.isAttacking) {
             weapon.Attack();
             GetComponent<Animator>().SetTrigger("Attack");
         }
