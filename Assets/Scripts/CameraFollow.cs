@@ -2,7 +2,9 @@
 
 public class CameraFollow : MonoBehaviour {
     public GameObject player;
+    public float delta;
     void Update() {
-        transform.position = player.transform.position + Vector3.back;
+        float x = Mathf.Clamp(transform.position.x, player.transform.position.x - delta, player.transform.position.x + delta);
+        transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
 }
