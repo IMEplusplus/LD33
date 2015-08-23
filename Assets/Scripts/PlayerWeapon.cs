@@ -30,5 +30,10 @@ public class PlayerWeapon : MonoBehaviour {
             col.GetComponent<Rigidbody2D>().velocity = delta.normalized * weapon.force / delta.magnitude;
             col.GetComponent<HitPoint>().GetDamage(weapon.damage);
         }
+
+        if(col.gameObject.tag == "Button")
+        {
+            col.GetComponent<ButtonManager>().Activate();
+        }
     }
 }
