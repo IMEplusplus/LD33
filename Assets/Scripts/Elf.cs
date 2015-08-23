@@ -4,6 +4,13 @@ public class Elf : MonoBehaviour {
     public GameObject healthPotion;
     [Range(0f,1f)]
     public float potionDrop = 0.5f;
+    public GameObject gameManager;
+
+    void Start()
+    {
+        gameManager = GameObject.FindWithTag("GameController");
+        gameManager.GetComponent<GameManager>().IncreaseElves();
+    }
 
     void Awake() {
         GetComponent<HitPoint>().OnDeath = OnDeath;
@@ -22,5 +29,6 @@ public class Elf : MonoBehaviour {
 
         GetComponent<Animator>().SetBool("Dead", true);
         GetComponent<BoxCollider2D>().enabled = false;
+        gameManager.GetComponent<GameManager>().DecreaseElves();
     }
 }
