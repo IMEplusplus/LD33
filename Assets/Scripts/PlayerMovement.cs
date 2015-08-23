@@ -2,6 +2,8 @@
 
 public class PlayerMovement : MonoBehaviour {
     Rigidbody2D rig;
+    Animator animator;
+
     public Weapon weapon;
 
     public KeyCode keyRight = KeyCode.D;
@@ -16,33 +18,53 @@ public class PlayerMovement : MonoBehaviour {
 
     void Awake() {
         rig = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 	
 	void FixedUpdate() {
         if (!weapon.isAttacking) {
-            bool lastToRight = toRight;
 
-            if (Input.GetKey(keyRight)) {
-                rig.position += speed * Vector2.right * Time.deltaTime;
-                toRight = true;
-            }
-            if (Input.GetKey(keyLeft)) {
-                rig.position += speed * Vector2.left * Time.deltaTime;
-                toRight = false;
-            }
-            if (Input.GetKey(keyUp)) {
-                rig.position += speed * Vector2.up * Time.deltaTime;
-            }
-            if (Input.GetKey(keyDown)) {
-                rig.position += speed * Vector2.down * Time.deltaTime;
-            }
+            float x = Input.GetAxis("Horizontal");
+            float y = Input.GetAxis("Vertical");
 
-            if (toRight && toRight != lastToRight) {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            if (!toRight && toRight != lastToRight) {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
+            rig.velocity = speed * new Vector3(x, y);
+
+            if (x > 0) transform.localScale = new Vector3(1, 1, 1);
+            if (x < 0) transform.localScale = new Vector3(-1, 1, 1);
+
+            //if (Input.GetKey(keyRight))
+            //{
+            //    rig.velocity += speed * Vector2.right;
+            //    toRight = true;
+            //}
+            //if (Input.GetKey(keyLeft))
+            //{
+            //    rig.velocity += speed * Vector2.left;
+            //    toRight = false;
+            //}
+            //if (Input.GetKey(keyUp))
+            //{
+            //    rig.velocity += speed * Vector2.up;
+            //}
+            //if (Input.GetKey(keyDown))
+            //{
+            //    rig.velocity += speed * Vector2.down;
+            //}
+
+            //if (toRight && toRight != lastToRight)
+            //{
+            //    transform.localScale = new Vector3(1, 1, 1);
+            //}
+            //if (!toRight && toRight != lastToRight)
+            //{
+            //    transform.localScale = new Vector3(-1, 1, 1);
+            //}
         }
-	}
+        else
+        {
+            rig.velocity = Vector3.zero;
+        }
+
+        animator.SetFloat("Speed", rig.velocity.magnitude);
+    }
 }
