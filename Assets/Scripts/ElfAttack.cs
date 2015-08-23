@@ -13,7 +13,7 @@ public class ElfAttack : MonoBehaviour {
     void OnTriggerStay2D(Collider2D col) {
         if (col.gameObject.tag == "Player" && !weapon.isAttacking) {
             col.GetComponent<HitPoint>().GetDamage(weapon.damage);
-            weapon.Attack(elf.toRight);
+            weapon.Attack();
         }
     }
 }

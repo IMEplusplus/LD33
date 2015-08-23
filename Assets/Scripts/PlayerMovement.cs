@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
         animator = GetComponent<Animator>();
     }
 	
-	void FixedUpdate() {
+	void Update() {
         if (!weapon.isAttacking) {
 
             float x = Input.GetAxis("Horizontal");

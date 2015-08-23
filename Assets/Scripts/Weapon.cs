@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(Collider2D))]
 public class Weapon : MonoBehaviour {
-    public delegate IEnumerator OnAttackDelegate(bool right);
+    public delegate IEnumerator OnAttackDelegate();
     public OnAttackDelegate OnAttack;
 
     AudioSource audio;
@@ -18,7 +18,13 @@ public class Weapon : MonoBehaviour {
         audio = GetComponent<AudioSource>();
     }
 
-    public void Attack(bool right) {
+    void Update() {
+        if (!isAttacking) {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Attack() {
         if (isAttacking)
             return;
 
@@ -27,6 +33,6 @@ public class Weapon : MonoBehaviour {
         audio.Play();
 
         if (OnAttack != null)
-            StartCoroutine(OnAttack(right));
+            StartCoroutine(OnAttack());
     }
 }
