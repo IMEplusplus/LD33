@@ -5,6 +5,8 @@ using System.Collections;
 public class Weapon : MonoBehaviour {
     public delegate IEnumerator OnAttackDelegate(bool right);
     public OnAttackDelegate OnAttack;
+
+    AudioSource audio;
     
     public int damage = 1;
     public float force = 3f;
@@ -13,6 +15,7 @@ public class Weapon : MonoBehaviour {
 
     void Start() {
         gameObject.SetActive(false);
+        audio = GetComponent<AudioSource>();
     }
 
     public void Attack(bool right) {
@@ -21,6 +24,8 @@ public class Weapon : MonoBehaviour {
 
         isAttacking = true;
         gameObject.SetActive(true);
+        audio.Play();
+
         if (OnAttack != null)
             StartCoroutine(OnAttack(right));
     }
