@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 6562ca345298dad45b97bebea392c32a
-timeCreated: 1440303015
+guid: 16f12979c5999174bbb1a6773c30526b
+timeCreated: 1440361775
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: ponte_2_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -37,7 +38,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -48,7 +49,17 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: ponte_2_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 4
+        width: 90
+        height: 24
+      alignment: 9
+      pivot: {x: .501271725, y: .0666585937}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

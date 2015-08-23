@@ -19,9 +19,10 @@ public class ElfMovement : MonoBehaviour {
 
 	void Update () {
         if (!weapon.isAttacking && hitpoint.alive) {
-            walking = false;
+            //walking = false;
+
             Vector3 delta = player.transform.position - transform.position;
-            if (delta.magnitude < range) {
+            //if (delta.magnitude < range) {
                 transform.position += delta.normalized * speed * Time.deltaTime;
 
                 if (Mathf.Sign(transform.localScale.x) != Mathf.Sign(delta.x)) {
@@ -31,7 +32,7 @@ public class ElfMovement : MonoBehaviour {
                 }
 
                 walking = true;
-            }
+            //}
 
 
             anim.SetBool("Walking", walking);
