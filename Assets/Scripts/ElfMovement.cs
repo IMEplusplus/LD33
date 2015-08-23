@@ -4,21 +4,26 @@ public class ElfMovement : MonoBehaviour {
     GameObject player;
     public Weapon weapon;
     HitPoint hitpoint;
+    Animator anim;
+
     public float range;
     public float speed = 1f;
-    public bool toRight = false;
+
+    bool walking = false;
 
     void Awake() {
         player = GameObject.Find("Player");
         hitpoint = GetComponent<HitPoint>();
+        anim = GetComponent<Animator>();
     }
 
 	void Update () {
+        walking = false;
         if (!weapon.isAttacking && hitpoint.alive) {
             Vector3 delta = player.transform.position - transform.position;
             if (delta.magnitude < range) {
                 transform.position += delta.normalized * speed * Time.deltaTime;
-                toRight = (delta.x > 0);
+                walking = true;
             }
 
             if (Mathf.Sign(delta.x) != Mathf.Sign(transform.localScale.x)) {
@@ -27,5 +32,7 @@ public class ElfMovement : MonoBehaviour {
                 transform.localScale = scale;
             }
         }
+
+        anim.SetBool("Walking", walking);
 	}
 }
